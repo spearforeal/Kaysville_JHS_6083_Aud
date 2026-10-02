@@ -1,0 +1,69 @@
+.welcome-page {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(2rem, 7vw, 7rem);
+  background: var(--color-canvas);
+}
+
+.welcome-accent {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: clamp(1rem, 4vw, 4rem);
+  background: var(--color-brand);
+}
+
+.welcome-content {
+  width: min(100%, 62rem);
+  padding-right: clamp(1rem, 5vw, 6rem);
+}
+
+.welcome-location,
+.page-kicker {
+  margin: 0 0 var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-control);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.welcome-content h1 {
+  margin: 0;
+  font-size: clamp(5rem, 15vw, 11rem);
+  font-weight: var(--font-weight-heading);
+  letter-spacing: -0.08em;
+  line-height: 0.85;
+}
+
+.welcome-copy {
+  margin: var(--space-4) 0;
+  color: var(--color-text-muted);
+  font-size: clamp(1.15rem, 2.2vw, 1.75rem);
+}
+
+.primary-action {
+  display: inline-flex;
+  width: min(100%, 22rem);
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-3);
+  border: var(--border-width) solid var(--color-brand);
+  border-radius: var(--radius-control);
+  color: var(--color-brand-contrast);
+  background: var(--color-brand);
+  font-size: var(--font-size-control);
+  font-weight: var(--font-weight-control);
+  cursor: pointer;
+}
+
+.primary-action:hover {
+  background: var(--color-brand-hover);
+}
+
+.primary-action:active {
+  background: var(--color-brand-pressed);
+}

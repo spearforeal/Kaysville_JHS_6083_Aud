@@ -1,0 +1,47 @@
+@import './styles/tokens.css';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--color-canvas);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  min-height: var(--touch-target-min);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  box-shadow: var(--focus-ring);
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-brand-contrast);
+}
