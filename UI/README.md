@@ -41,6 +41,16 @@ kaysville-jhs-auditorium-ui.ch5z
 
 Build output and `.ch5z` archives are intentionally ignored by Git.
 
+## Processor-triggered shutdown
+
+- The panel sends the maintained room command on digital join 1: `true` after
+  warming and `false` when shutdown is confirmed.
+- The processor drives digital feedback join 3 high to invoke the same action
+  as the panel's Confirm shutdown button. The panel sends join 1 `false`, shows
+  the 5-second cooling page, then returns to Welcome.
+- Drive join 3 low again afterward so a future high can trigger another
+  shutdown. A low value has no action on its own.
+
 The Vite production configuration is panel-specific:
 
 - `base: './'` keeps JavaScript and CSS paths relative to the CH5 project.

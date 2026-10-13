@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { initializeConnection, Signal } from "@jag/crestron-ch5-core";
 import { PREVIEW_PASSCODE } from "./config/auth";
-import { PANEL_CONNECTION, ROOM_STATE_JOIN } from "./config/joins";
+import {
+  PANEL_CONNECTION,
+  ROOM_SHUTDOWN_REQUEST_JOIN,
+  ROOM_STATE_JOIN,
+} from "./config/joins";
 import { ROOM_TRANSITION_MS } from "./config/session";
 import { MainMenuPage } from "./pages/MainMenuPage";
 import { PasswordPage } from "./pages/PasswordPage";
@@ -15,6 +19,12 @@ type AppView = "welcome" | "password" | "warming" | "main" | "shutdown" | "cooli
 function App() {
   const [view, setView] = useState<AppView>("welcome");
   const [processorConnected, setProcessorConnected] = useState(false);
+  const shutdownRequestHigh = useRef(false);
+
+  const confirmShutdown = useCallback(() => {
+    Signal.Digital(ROOM_STATE_JOIN, false);
+    setView("cooling");
+  }, []);
 
   useEffect(
     () =>
@@ -26,6 +36,16 @@ function App() {
       }, PANEL_CONNECTION),
     [],
   );
+
+  useEffect(() => {
+    const subscriptionId = Signal.DigitalEvent(ROOM_SHUTDOWN_REQUEST_JOIN, (requested) => {
+      if (requested && !shutdownRequestHigh.current) confirmShutdown();
+      shutdownRequestHigh.current = requested;
+    });
+    return () =>
+      Signal.RemoveDigitalEvent(ROOM_SHUTDOWN_REQUEST_JOIN, subscriptionId);
+  }, [confirmShutdown]);
+
   if (view === "welcome") {
     return <WelcomePage onStart={() => setView("password")} />;
   }
@@ -66,10 +86,7 @@ function App() {
     return (
       <ShutdownPage
         onCancel={() => setView("main")}
-        onConfirm={() => {
-          Signal.Digital(ROOM_STATE_JOIN, false);
-          setView("cooling");
-        }}
+        onConfirm={confirmShutdown}
       />
     );
   }

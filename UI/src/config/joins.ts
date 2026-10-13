@@ -3,6 +3,7 @@ export const PANEL_CONNECTION = {
 } as const;
 
 export const ROOM_STATE_JOIN = 1;
+export const ROOM_SHUTDOWN_REQUEST_JOIN = 3;
 
 export const DSP_STATUS_JOINS = {
   connected: 2,
