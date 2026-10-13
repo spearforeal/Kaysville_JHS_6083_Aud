@@ -5,20 +5,24 @@ import { SystemClock } from "./SystemClock";
 interface AppShellProps {
   activeMenuId: string;
   children: ReactNode;
+  mainClassName?: string;
   menuItems: readonly MenuItem[];
   onExit: () => void;
   onNavigate: (id: string) => void;
+  rightRail?: ReactNode;
 }
 
 export function AppShell({
   activeMenuId,
   children,
+  mainClassName,
   menuItems,
   onExit,
   onNavigate,
+  rightRail,
 }: AppShellProps) {
   return (
-    <div className="app-shell">
+    <div className={`app-shell${rightRail ? " app-shell--with-right-rail" : ""}`}>
       <header className="app-header">
         <span aria-hidden="true" />
         <h1>Auditorium</h1>
@@ -32,7 +36,11 @@ export function AppShell({
         onNavigate={onNavigate}
       />
 
-      <main className="app-main">{children}</main>
+      <main className={`app-main${mainClassName ? ` ${mainClassName}` : ""}`}>
+        {children}
+      </main>
+
+      {rightRail ? <aside className="right-rail">{rightRail}</aside> : null}
 
       <footer className="app-footer"></footer>
     </div>

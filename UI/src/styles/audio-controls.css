@@ -1,0 +1,177 @@
+.audio-controls-page {
+  --audio-fader-length: clamp(12rem, calc(100vh - 30rem), 24rem);
+  display: grid;
+  height: 100%;
+  min-height: 0;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: var(--space-2);
+}
+
+.audio-controls-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.audio-controls-header h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 3rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.audio-controls-header>p {
+  max-width: 18rem;
+  margin: 0 0 0.4rem;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  text-align: right;
+}
+
+.audio-bank-menu {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(8rem, 1fr));
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-control);
+  overflow: hidden;
+}
+
+.audio-bank-menu button {
+  border: 0;
+  border-bottom: 0.25rem solid transparent;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  font-weight: var(--font-weight-control);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.audio-bank-menu button + button {
+  border-left: var(--border-width) solid var(--color-border);
+}
+
+.audio-bank-menu button[aria-pressed="true"] {
+  border-bottom-color: var(--color-brand);
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+  box-shadow: inset 0 -0.25rem 0 var(--color-brand);
+}
+
+.audio-bank-menu button:focus {
+  outline: none;
+}
+
+.audio-bank-menu button:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: -2px;
+}
+
+.audio-channel-grid {
+  display: grid;
+  min-height: 0;
+  grid-auto-columns: minmax(8rem, 1fr);
+  grid-auto-flow: column;
+  gap: var(--space-1);
+  overflow-x: auto;
+  padding-bottom: var(--space-1);
+}
+
+.audio-channel-strip {
+  display: grid;
+  min-height: 0;
+  grid-template-rows: auto minmax(var(--audio-fader-length), 1fr) auto;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
+}
+
+.audio-channel-heading {
+  display: grid;
+  min-height: 3.5rem;
+  align-content: start;
+  justify-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.audio-channel-heading h3,
+.audio-channel-heading output {
+  margin: 0;
+}
+
+.audio-channel-heading h3 {
+  font-size: var(--font-size-control);
+}
+
+.audio-channel-heading output {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  font-variant-numeric: tabular-nums;
+}
+
+.audio-channel-fader {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.audio-channel-fader input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--audio-fader-length);
+  height: 2.5rem;
+  margin: 0;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  appearance: none;
+  border-radius: 999px;
+  background: linear-gradient(to right,
+      var(--color-brand) 0 var(--channel-level),
+      var(--color-border) var(--channel-level) 100%);
+  cursor: pointer;
+}
+
+.audio-channel-fader input::-webkit-slider-thumb {
+  width: 2.5rem;
+  height: 2.5rem;
+  appearance: none;
+  border: 0.2rem solid var(--color-text);
+  border-radius: 50%;
+  background: var(--color-surface-raised);
+}
+
+.audio-channel-fader input::-moz-range-thumb {
+  width: 2.15rem;
+  height: 2.15rem;
+  border: 0.2rem solid var(--color-text);
+  border-radius: 50%;
+  background: var(--color-surface-raised);
+}
+
+.audio-channel-mute {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+  font-weight: var(--font-weight-control);
+  cursor: pointer;
+}
+
+.audio-channel-mute[aria-pressed="true"] {
+  border-color: var(--color-fault);
+  background: var(--color-fault);
+}
+
+@media (max-width: 760px) {
+  .audio-controls-header {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .audio-controls-header>p {
+    text-align: left;
+  }
+}

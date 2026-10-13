@@ -17,6 +17,7 @@
     "@crestron/ch5-crcomlib": "2.19.1",
     "@crestron/ch5-webxpanel": "2.8.0",
     "@jag/crestron-ch5-core": "github:spearforeal/crestron-ch5-core#v0.1.0",
+    "lucide-react": "^1.55.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

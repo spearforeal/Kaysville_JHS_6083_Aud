@@ -1,0 +1,68 @@
+.Source-button {
+    display: flex;
+    min-height: var(--control-height);
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    color: var(--color-text);
+    background: var(--color-surface);
+    font-weight: var(--font-weight-control);
+    text-align: left;
+    cursor: pointer;
+}
+
+.routing-sources-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    width: min(100%, 59rem);
+    margin: auto auto 100px;
+}
+
+.Source-button:hover {
+    background: var(--color-surface-hover);
+}
+
+.Source-button.Selected,
+.Source-button.Selected:hover {
+    border-color: var(--color-brand);
+    background: var(--color-surface-raised);
+    box-shadow: inset 4px 0 0 var(--color-brand);
+}
+
+.Source-button.Button-press-effect:active {
+    transform: translateY(1px);
+}
+
+.Source-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    flex: none;
+}
+
+.Source-button img.Source-icon {
+    filter: brightness(0) invert(1);
+}
+
+.routing-sources-heading {
+    text-align: left;
+}
+
+.routing-sources-heading h2 {
+    margin: 0;
+    font-size: var(--font-size-section);
+}
+
+.routing-sources-heading p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-caption);
+}
+
+.routing-source-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+    gap: var(--space-2);
+}

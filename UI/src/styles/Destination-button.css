@@ -1,0 +1,48 @@
+.Destination-button {
+    display: flex;
+    min-height: var(--control-height);
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    color: var(--color-text);
+    background: var(--color-surface);
+    text-align: left;
+    cursor: pointer;
+}
+
+.Destination-button:hover {
+    background: var(--color-surface-hover);
+}
+
+.Destination-button:active {
+    transform: translateY(1px);
+}
+
+.Destination-button:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+.Destination-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    flex: none;
+}
+
+.Destination-details {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.Destination-details strong {
+    font-size: var(--font-size-body);
+}
+
+.Destination-details small {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-caption);
+}

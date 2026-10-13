@@ -1,3 +1,8 @@
 @import './styles/welcome.css';
 @import './styles/password.css';
 @import './styles/app-shell.css';
+@import './styles/program-audio.css';
+@import './styles/audio-controls.css';
+@import './styles/display-controls.css';
+@import './styles/Source-button.css';
+@import './styles/RoutingPage.css';

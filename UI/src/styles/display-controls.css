@@ -1,0 +1,92 @@
+.display-controls-page {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.display-controls-page h1 {
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 3.5rem);
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.display-control-card {
+  width: min(100%, 34rem);
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
+}
+
+.display-control-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
+}
+
+.display-control-heading h2 {
+  margin: 0;
+  font-size: var(--font-size-section);
+}
+
+.display-control-status {
+  color: var(--color-warning);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-control);
+}
+
+.display-control-note,
+.display-control-preview {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-body);
+}
+
+.display-control-note {
+  margin: var(--space-2) 0 var(--space-3);
+}
+
+.display-power-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.display-power-button {
+  min-height: var(--control-height);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+  font: inherit;
+  font-weight: var(--font-weight-control);
+  cursor: pointer;
+}
+
+.display-power-button:hover {
+  background: var(--color-surface-hover);
+}
+
+.display-power-button--on[aria-pressed="true"] {
+  border-color: var(--color-success);
+  background: var(--color-success);
+}
+
+.display-power-button--off[aria-pressed="true"] {
+  border-color: var(--color-brand);
+  background: var(--color-brand);
+}
+
+.display-power-button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.display-control-preview {
+  min-height: 1.5em;
+  margin: var(--space-2) 0 0;
+}
