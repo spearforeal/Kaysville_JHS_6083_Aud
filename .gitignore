@@ -37,6 +37,7 @@ StyleCop.Cache
 *.axw
 
 # Generic Files
+.DS_Store
 *.zip
 
 
