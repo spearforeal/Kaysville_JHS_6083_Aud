@@ -7,19 +7,22 @@ import { ProgramAudioControl } from "../components/ProgramAudioControl";
 import { AudioControlsPage } from "./AudioControlsPage";
 import { RoutingPage } from "./RoutingPage";
 import { DisplayControlPage } from "./DisplayControlPage";
+import { StatusPage } from "./StatusPage";
 const MENU_ITEMS = [
   { id: "routing", label: "Routing" },
   { id: "audio-controls", label: "Audio Controls" },
   { id: "display-controls", label: "Display Controls" },
+  { id: "status", label: "Status" },
 ] as const;
 
 type MenuId = (typeof MENU_ITEMS)[number]["id"];
 
 interface MainMenuPageProps {
   onExit: () => void;
+  processorConnected: boolean;
 }
 
-export function MainMenuPage({ onExit }: MainMenuPageProps) {
+export function MainMenuPage({ onExit, processorConnected }: MainMenuPageProps) {
   const [activeMenuId, setActiveMenuId] = useState<MenuId>("routing");
   const [programLevel, setProgramLevel] = useState(0);
   const [isProgramMuted, setIsProgramMuted] = useState(false);
@@ -52,7 +55,7 @@ export function MainMenuPage({ onExit }: MainMenuPageProps) {
     Signal.Digital(PROGRAM_AUDIO_JOINS.mute, !isProgramMuted);
   };
   const isAudioControls = activeMenuId === "audio-controls";
-  const showProgramAudio = activeMenuId !== "audio-controls";
+  const showProgramAudio = activeMenuId !== "audio-controls" && activeMenuId !== "status";
 
   return (
     <AppShell
@@ -81,8 +84,13 @@ export function MainMenuPage({ onExit }: MainMenuPageProps) {
         />
       ) : activeMenuId === "routing" ? (
         <RoutingPage />
-      ) : (
+      ) : activeMenuId === "display-controls" ? (
         <DisplayControlPage />
+      ) : (
+        <StatusPage
+          key={processorConnected ? "processor-online" : "processor-offline"}
+          processorConnected={processorConnected}
+        />
       )}
     </AppShell>
   );

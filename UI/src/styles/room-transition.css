@@ -1,0 +1,70 @@
+.transition-page,
+.shutdown-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: var(--space-3);
+  background: var(--color-canvas);
+}
+
+.transition-content,
+.shutdown-content {
+  width: min(100%, 45rem);
+}
+
+.transition-content h1,
+.shutdown-content h1 {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 5rem);
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.transition-copy {
+  margin: var(--space-3) 0 var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-section);
+}
+
+.transition-track {
+  height: 1.25rem;
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+}
+
+.transition-fill {
+  height: 100%;
+  background: var(--color-brand);
+}
+
+.transition-percent {
+  margin-top: var(--space-1);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.shutdown-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.shutdown-cancel {
+  min-width: 12rem;
+  min-height: 4.5rem;
+  padding: 0 var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  background: var(--color-surface);
+  font-size: var(--font-size-control);
+  font-weight: var(--font-weight-control);
+  cursor: pointer;
+}
+
+.shutdown-cancel:hover {
+  background: var(--color-surface-hover);
+}

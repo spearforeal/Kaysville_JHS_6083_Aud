@@ -1,0 +1,38 @@
+.status-page {
+  width: min(100%, 48rem);
+  padding: clamp(1rem, 5vw, 4rem);
+}
+
+.status-page h1 {
+  margin: 0 0 var(--space-4);
+  font-size: clamp(3rem, 7vw, 4rem);
+  letter-spacing: -0.06em;
+}
+
+.status-list {
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.status-row {
+  display: flex;
+  min-height: 5.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  border-bottom: var(--border-width) solid var(--color-border);
+  font-size: var(--font-size-control);
+}
+
+.status-row span {
+  color: var(--color-text-muted);
+}
+
+.status-row strong {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.status-connected {
+  color: var(--color-success);
+}
