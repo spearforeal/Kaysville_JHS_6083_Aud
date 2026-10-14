@@ -30,9 +30,9 @@ const AUDIO_INPUTS: { id: AudioInputId; label: string; group: InputGroupId }[] =
     { id: "mic-line-9", label: "Platform Left", group: "stage-room" },
     { id: "mic-line-10", label: "Platform Center", group: "stage-room" },
     { id: "mic-line-11", label: "Platform Right", group: "stage-room" },
-    { id: "mic-line-12", label: "Room Mic 1", group: "stage-room" },
-    { id: "mic-line-13", label: "Room Mic 2", group: "stage-room" },
-    { id: "mic-line-14", label: "Room Mic 3", group: "stage-room" },
+    { id: "mic-line-12", label: "Room Mics", group: "stage-room" },
+    //{ id: "mic-line-13", label: "Room Mic 2", group: "stage-room" },
+    //{ id: "mic-line-14", label: "Room Mic 3", group: "stage-room" },
     {
       id: "bluetooth-wall-plate-1",
       label: "Bluetooth Wall Plate 1",
