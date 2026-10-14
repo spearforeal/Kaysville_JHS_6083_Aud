@@ -26,7 +26,7 @@ const AUDIO_INPUTS: { id: AudioInputId; label: string; group: InputGroupId }[] =
     { id: "mic-line-5", label: "Wireless 5", group: "program-wireless" },
     { id: "mic-line-6", label: "Wireless 6", group: "program-wireless" },
     { id: "mic-line-7", label: "Talkback", group: "program-wireless" },
-    { id: "mic-line-8", label: "Page Zone", group: "program-wireless" },
+    //{ id: "mic-line-8", label: "Page Zone", group: "program-wireless" },
     { id: "mic-line-9", label: "Platform Left", group: "stage-room" },
     { id: "mic-line-10", label: "Platform Center", group: "stage-room" },
     { id: "mic-line-11", label: "Platform Right", group: "stage-room" },
