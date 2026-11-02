@@ -5,14 +5,16 @@ const MAX_PASSCODE_LENGTH = 8
 
 interface PasswordPageProps {
   onAuthorized: () => void
-  onBack: () => void
+  onBack?: () => void
   onSubmit: (passcode: string) => boolean
+  purpose?: 'start' | 'unlock'
 }
 
 export function PasswordPage({
   onAuthorized,
   onBack,
   onSubmit,
+  purpose = 'start',
 }: PasswordPageProps) {
   const [passcode, setPasscode] = useState('')
   const [isIncorrect, setIsIncorrect] = useState(false)
@@ -43,13 +45,21 @@ export function PasswordPage({
   return (
     <main className="password-page">
       <header className="password-header">
-        <button className="back-button" onClick={onBack} type="button">
-          <span aria-hidden="true">←</span> Back
-        </button>
+        {onBack ? (
+          <button className="back-button" onClick={onBack} type="button">
+            <span aria-hidden="true">←</span> Back
+          </button>
+        ) : (
+          <span aria-hidden="true" />
+        )}
         <div>
           <p className="page-kicker">Kaysville Junior High</p>
           <h1 aria-live="polite">
-            {isIncorrect ? 'Incorrect passcode' : 'Enter passcode'}
+            {isIncorrect
+              ? 'Incorrect passcode'
+              : purpose === 'unlock'
+                ? 'Panel locked'
+                : 'Enter passcode'}
           </h1>
         </div>
         <span aria-hidden="true" />

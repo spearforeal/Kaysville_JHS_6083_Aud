@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { LockKeyhole } from "lucide-react";
 import { SideMenu, type MenuItem } from "./SideMenu";
 import { SystemClock } from "./SystemClock";
 
@@ -8,6 +9,7 @@ interface AppShellProps {
   mainClassName?: string;
   menuItems: readonly MenuItem[];
   onExit: () => void;
+  onLock: () => void;
   onNavigate: (id: string) => void;
   rightRail?: ReactNode;
 }
@@ -18,6 +20,7 @@ export function AppShell({
   mainClassName,
   menuItems,
   onExit,
+  onLock,
   onNavigate,
   rightRail,
 }: AppShellProps) {
@@ -26,7 +29,17 @@ export function AppShell({
       <header className="app-header">
         <span aria-hidden="true" />
         <h1>Auditorium</h1>
-        <SystemClock />
+        <div className="header-actions">
+          <SystemClock />
+          <button
+            aria-label="Lock Panel"
+            className="panel-lock-button"
+            onClick={onLock}
+            type="button"
+          >
+            <LockKeyhole aria-hidden="true" size={22} />
+          </button>
+        </div>
       </header>
 
       <SideMenu

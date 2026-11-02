@@ -19,10 +19,15 @@ type MenuId = (typeof MENU_ITEMS)[number]["id"];
 
 interface MainMenuPageProps {
   onExit: () => void;
+  onLock: () => void;
   processorConnected: boolean;
 }
 
-export function MainMenuPage({ onExit, processorConnected }: MainMenuPageProps) {
+export function MainMenuPage({
+  onExit,
+  onLock,
+  processorConnected,
+}: MainMenuPageProps) {
   const [activeMenuId, setActiveMenuId] = useState<MenuId>("routing");
   const [programLevel, setProgramLevel] = useState(0);
   const [isProgramMuted, setIsProgramMuted] = useState(false);
@@ -63,6 +68,7 @@ export function MainMenuPage({ onExit, processorConnected }: MainMenuPageProps) 
       mainClassName={isAudioControls ? "app-main--wide" : undefined}
       menuItems={MENU_ITEMS}
       onExit={onExit}
+      onLock={onLock}
       onNavigate={(id) => setActiveMenuId(id as MenuId)}
       rightRail={
         showProgramAudio ? (

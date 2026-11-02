@@ -18,6 +18,7 @@ type AppView = "welcome" | "password" | "warming" | "main" | "shutdown" | "cooli
 
 function App() {
   const [view, setView] = useState<AppView>("welcome");
+  const [locked, setLocked] = useState(false);
   const [processorConnected, setProcessorConnected] = useState(false);
   const shutdownRequestHigh = useRef(false);
 
@@ -46,22 +47,19 @@ function App() {
       Signal.RemoveDigitalEvent(ROOM_SHUTDOWN_REQUEST_JOIN, subscriptionId);
   }, [confirmShutdown]);
 
+  let page;
   if (view === "welcome") {
-    return <WelcomePage onStart={() => setView("password")} />;
-  }
-
-  if (view === "password") {
-    return (
+    page = <WelcomePage onStart={() => setView("password")} />;
+  } else if (view === "password") {
+    page = (
       <PasswordPage
         onBack={() => setView("welcome")}
         onSubmit={(passcode) => passcode === PREVIEW_PASSCODE}
         onAuthorized={() => setView("warming")}
       />
     );
-  }
-
-  if (view === "warming") {
-    return (
+  } else if (view === "warming") {
+    page = (
       <TransitionPage
         durationMs={ROOM_TRANSITION_MS.warming}
         mode="warming"
@@ -71,32 +69,49 @@ function App() {
         }}
       />
     );
-  }
-
-  if (view === "main") {
-    return (
+  } else if (view === "main") {
+    page = (
       <MainMenuPage
         onExit={() => setView("shutdown")}
+        onLock={() => setLocked(true)}
         processorConnected={processorConnected}
       />
     );
-  }
-
-  if (view === "shutdown") {
-    return (
+  } else if (view === "shutdown") {
+    page = (
       <ShutdownPage
         onCancel={() => setView("main")}
         onConfirm={confirmShutdown}
       />
     );
+  } else {
+    page = (
+      <TransitionPage
+        durationMs={ROOM_TRANSITION_MS.cooling}
+        mode="cooling"
+        onComplete={() => setView("welcome")}
+      />
+    );
   }
 
   return (
-    <TransitionPage
-      durationMs={ROOM_TRANSITION_MS.cooling}
-      mode="cooling"
-      onComplete={() => setView("welcome")}
-    />
+    <>
+      <div inert={locked}>{page}</div>
+      {locked ? (
+        <div
+          aria-label="Panel locked"
+          aria-modal="true"
+          className="panel-lock-overlay"
+          role="dialog"
+        >
+          <PasswordPage
+            onSubmit={(passcode) => passcode === PREVIEW_PASSCODE}
+            onAuthorized={() => setLocked(false)}
+            purpose="unlock"
+          />
+        </div>
+      ) : null}
+    </>
   );
 }
 
